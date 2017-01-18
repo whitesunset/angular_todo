@@ -1,0 +1,30 @@
+.list-todos{
+  padding: 2em 1em 0 2em;
+  li{
+    padding: 4px 0;
+    font-size: 1.4em;
+  }
+  label{
+    margin: 0;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+  }
+  input[type="checkbox"]{
+    top: 4px;
+  }
+  input[type="text"]{
+    width: 100%;
+    padding: 0;
+    margin-bottom: -5px;
+    line-height: 1;
+  }
+  .actions{
+    span{
+      display: inline-block;
+      cursor: pointer;
+      margin: 0 0 0 10px;
+    }
+  }
+}

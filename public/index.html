@@ -1,0 +1,99 @@
+<!doctype html>
+<html ng-app="todoApp" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/styles.min.css">
+    <title>Todo App</title>
+</head>
+<body>
+<div class="container app">
+    <h4>My awesome Todo list</h4>
+    <div class="panel panel-warning" ng-controller="TodoListController as todoList">
+        <div class="panel-body">
+            <form ng-submit="todoList.addTodo()">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="todoList.todoText" placeholder="Add new Todo">
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-xs btn-primary"
+                          ng-disabled="todoList.completed() == todoList.todos.length"
+                          ng-click="todoList.complete(true)">Complete all</button>
+                    <button class="btn btn-xs btn-primary"
+                          ng-class="{'hidden': todoList.completed() === 0}"
+                          ng-click="todoList.complete(false)">Revert all</button>
+                    <button class="btn btn-xs btn-danger"
+                          ng-class="{'hidden': todoList.completed() === 0}"
+                          ng-click="todoList.deleteCompleted()">Delete completed</button>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-xs btn-default"
+                            ng-class="{'btn-primary': todoList.completedFilter == null}"
+                            ng-click="todoList.filterCompleted(null)">All</button>
+                    <button class="btn btn-xs btn-default"
+                            ng-class="{'btn-primary': todoList.completedFilter == false}"
+                            ng-click="todoList.filterCompleted(false)">Active</button>
+                    <button class="btn btn-xs btn-default"
+                            ng-class="{'btn-primary': todoList.completedFilter == true}"
+                            ng-click="todoList.filterCompleted(true)">Сompleted</button>
+                </div>
+            </div>
+            <ul class="list-unstyled list-todos">
+                <li ng-repeat="todo in todoList.todos"
+                    ng-class="{hidden: todo.completed != todoList.completedFilter && todoList.completedFilter != null}"
+                    ng-model="todo._id">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <input type="text"
+                                   ng-model="todo.name"
+                                   focus-me="{{todo.editing}}"
+                                   enter-me="todoList.save(todo)"
+                                   ng-class="{hidden: !todo.editing}">
+                            <label class="checkbox"
+                                   ng-class="{hidden: todo.editing}">
+                                <input type="checkbox" ng-model="todo.completed"
+                                       ng-change="todoList.save(todo)">
+                                <span class="done-{{todo.completed}}">{{todo.name}}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-2 text-right actions">
+                            <span class="glyphicon glyphicon-pencil edit"
+                                  aria-hidden="true"
+                                  title="Edit"
+                                  ng-class="{hidden: todo.editing}"
+                                  ng-click="todoList.editMode(todo)"></span>
+                            <span class="glyphicon glyphicon-ok save"
+                                  aria-hidden="true"
+                                  title="Save"
+                                  ng-class="{hidden: !todo.editing}"
+                                  ng-click="todoList.save(todo)"></span>
+                            <span class="glyphicon glyphicon-remove remove"
+                                  aria-hidden="true"
+                                  title="Delete"
+                                  ng-click="todoList.delete(todo)"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-6">
+                    <span>{{todoList.completed()}} / {{todoList.todos.length}} completed</span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <span class="text-danger"
+                          ng-class="{hidden: !todoList.errorMessage}">
+                        {{todoList.errorMessage}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/scripts.min.js"></script>
+</body>
+</html>

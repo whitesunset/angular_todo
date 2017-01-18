@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/styles.min.css">
+    <title>Todo API and examples</title>
+</head>
+<body>
+<div class="container">
+    <h1>Todo API</h1>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>Default API url</h5>
+            <pre>/api/%endpoint%</pre>
+        </div>
+    </div>
+    <h3>CRUD Endpoints</h3>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>CREATE</h5>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="#desc_1" aria-controls="desc_1" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#example_1" aria-controls="example_1" role="tab" data-toggle="tab">Example</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="desc_1">
+                    <p>
+                        POST request with JSON data
+                    </p>
+                    <pre>/create</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="example_1">
+                    <pre>$http.post('/api/create/', {
+        name: 'Make TODO app with Angular',
+        completed: true // optional, default: false
+    })
+    .then(res => {
+        // do something
+    })
+    .catch(err => {
+        console.error(err)
+    })
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>READ all documents</h5>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="#desc_2" aria-controls="desc_2" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#example_2" aria-controls="example_2" role="tab" data-toggle="tab">Example</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="desc_2">
+                    <p>
+                        GET request
+                    </p>
+                    <pre>/items</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="example_2">
+                    <pre>$http.get('/api/items/')
+    .then(res => {
+        // do something
+    })
+    .catch(err => {
+        console.error(err)
+    })
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>READ document by ID</h5>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="#desc_3" aria-controls="desc_3" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#example_3" aria-controls="example_3" role="tab" data-toggle="tab">Example</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="desc_3">
+                    <p>
+                        GET request
+                    </p>
+                    <pre>/item/:id</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="example_3">
+                    <pre>$http.get('/api/items/587fbedebbd5b01f123f59d8')
+    .then(res => {
+        // do something
+    })
+    .catch(err => {
+        console.error(err)
+    })
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>UPDATE document by ID</h5>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="#desc_4" aria-controls="desc_4" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#example_4" aria-controls="example_4" role="tab" data-toggle="tab">Example</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="desc_4">
+                    <p>
+                        PUT request with JSON data
+                    </p>
+                    <pre>/item/:id</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="example_4">
+                    <pre>$http.put('/api/item/587fbedebbd5b01f123f59d8', {
+        name: 'Write API docs',
+        completed: true // optional, default: false
+    })
+    .then(res => {
+        // do something
+    })
+    .catch(err => {
+        console.error(err)
+    })
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <h5>DELETE document by ID</h5>
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="#desc_5" aria-controls="desc_5" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#example_5" aria-controls="example_5" role="tab" data-toggle="tab">Example</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="desc_5">
+                    <p>
+                        DELETE request
+                    </p>
+                    <pre>/item/:id</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="example_5">
+                    <pre>$http.delete('/api/item/587fbedebbd5b01f123f59d8')
+    .then(res => {
+        // do something
+    })
+    .catch(err => {
+        console.error(err)
+    })
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/scripts.min.js"></script>
+</body>
+</html>
