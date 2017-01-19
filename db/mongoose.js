@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const db = require(__base + '/config/app')
+const config = require(__base + '/config/app')
 const Todo = require(__base + 'model/todo')
 
 // Wrap CRUD methods, so we can change DB provider without changing API code
@@ -33,7 +33,7 @@ function MongooseProvider () {
     mongoose.Promise = global.Promise
 
     // Connect to Mongo via Mongoose
-    mongoose.connect('mongodb://localhost/' + db.db_name)
+    mongoose.connect('mongodb://localhost/' + config.db_name)
       .then(() => {
         console.log('MongoDB connected')
       })

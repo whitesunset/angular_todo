@@ -2,7 +2,7 @@ window.jQuery = require('jquery')
 require('bootstrap')
 
 const angular = require('angular')
-const api_base = '/api'
+const API_BASE = '/api'
 const ERROR_MESSAGE_DURATION = 3000
 
 angular.module('todoApp', [])
@@ -49,7 +49,7 @@ angular.module('todoApp', [])
 
     // CREATE
     todoList.addTodo = () => {
-      $http.post(`${api_base}/create/`, {
+      $http.post(`${API_BASE}/create/`, {
         name: todoList.todoText,
         completed: false
       })
@@ -63,7 +63,7 @@ angular.module('todoApp', [])
     // READ
     todoList.getItems = () => {
       // Load todos from API
-      $http.get(`${api_base}/items/`)
+      $http.get(`${API_BASE}/items/`)
         .then(res => {
           let todos = res.data
 
@@ -87,7 +87,7 @@ angular.module('todoApp', [])
 
     // UPDATE
     todoList.save = todo => {
-      $http.put(`${api_base}/item/${todo._id}`, todo)
+      $http.put(`${API_BASE}/item/${todo._id}`, todo)
         .then(res => {
           todo.editing = false
         })
@@ -96,7 +96,7 @@ angular.module('todoApp', [])
 
     // DELETE
     todoList.delete = todo => {
-      $http.delete(`${api_base}/item/${todo._id}`)
+      $http.delete(`${API_BASE}/item/${todo._id}`)
         .then(res => {
           todoList.todos = todoList.todos.filter(obj => {
             return obj._id != res.data._id

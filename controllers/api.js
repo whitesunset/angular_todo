@@ -1,6 +1,6 @@
-const bodyParser = require('body-parser')
 const config = require(__base + 'config/app')
-const api_url = config.api_url
+const API_BASE = config.api_url
+const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 
 function Controller (app) {
@@ -10,12 +10,12 @@ function Controller (app) {
   }
 
   // REST Server docs with examples, blackjack and hookers
-  app.get(api_url + '/docs', (req, res) => {
+  app.get(API_BASE + '/docs', (req, res) => {
     res.sendFile(__base + '/public/api/docs.html')
   })
 
   // CREATE item
-  app.post(api_url + '/create', jsonParser, (req, res) => {
+  app.post(API_BASE + '/create', jsonParser, (req, res) => {
     app.db.create(req.body)
       .then(model => {
         res.json(model)
@@ -25,7 +25,7 @@ function Controller (app) {
   })
 
   // READ items
-  app.get(api_url + '/items', (req, res) => {
+  app.get(API_BASE + '/items', (req, res) => {
     app.db.read()
       .then(models => {
         res.json(models)
@@ -35,7 +35,7 @@ function Controller (app) {
   })
 
   //READ item
-  app.get(api_url + '/item/:id', (req, res) => {
+  app.get(API_BASE + '/item/:id', (req, res) => {
     app.db.readById(req.params.id)
       .then(model => {
         res.json(model)
@@ -45,7 +45,7 @@ function Controller (app) {
   })
 
   // UPDATE item
-  app.put(api_url + '/item/:id', jsonParser, (req, res) => {
+  app.put(API_BASE + '/item/:id', jsonParser, (req, res) => {
     app.db.updateById(req.params.id, req.body)
       .then(model => {
         res.json(model)
@@ -55,7 +55,7 @@ function Controller (app) {
   })
 
   // DELETE item
-  app.delete(api_url + '/item/:id', (req, res) => {
+  app.delete(API_BASE + '/item/:id', (req, res) => {
     app.db.deleteById(req.params.id)
       .then(model => {
         res.json(model)
